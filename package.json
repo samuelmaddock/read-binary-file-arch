@@ -1,6 +1,6 @@
 {
   "name": "read-binary-file-arch",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Reads a binary file to determine its CPU architecture.",
   "main": "index.js",
   "types": "./index.d.ts",
