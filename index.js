@@ -64,9 +64,21 @@ async function getArchUsingFileCommand(filePath) {
   const result = output.substring(resultStart).trim();
   debug('result:', result);
 
-  const archMatch = result.match(/x86-64|arm64|aarch64|x86|x64|arm/);
-  debug(`archMatch: ${archMatch?.[0]}`);
-  const arch = archMatch ? archMatch[0] : null;
+  // 'file' architectures => Node architectures
+  const FILE_ARCH = {
+    x64: 'x64',
+    'x86-64': 'ia32',
+    x86: 'ia32',
+    arm64: 'arm64',
+    arm: 'arm',
+    aarch64: 'arm64',
+  };
+
+  const fileArchRegex = new RegExp(`/${Object.keys(FILE_ARCH).join('|')}/`);
+  const fileArchMatch = result.match(fileArchRegex);
+  debug(`archMatch: ${fileArchMatch?.[0]}`);
+  const fileArch = fileArchMatch ? fileArchMatch[0] : null;
+  const arch = FILE_ARCH[fileArch];
 
   return arch;
 }
