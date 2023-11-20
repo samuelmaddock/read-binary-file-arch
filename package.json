@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Reads a binary file to determine its CPU architecture.",
   "main": "index.js",
+  "types": "./index.d.ts",
   "bin": {
     "read-binary-file-arch": "cli.js"
   },
