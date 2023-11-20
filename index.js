@@ -41,7 +41,7 @@ async function readPEArch(filePath) {
 
   // Mapping of machine types to architectures
   const MACHINE_TYPES = {
-    0x014c: 'x86',
+    0x014c: 'ia32',
     0x8664: 'x64',
     0x01c0: 'arm',
     0xaa64: 'arm64',
