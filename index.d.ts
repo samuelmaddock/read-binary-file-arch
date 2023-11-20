@@ -9,4 +9,4 @@
  */
 export function readBinaryFileArch(
   filePath: string
-): Promise<NodeJS.Architecture | null>;
+): Promise<NodeJS.Process['arch'] | null>;
