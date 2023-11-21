@@ -68,16 +68,30 @@ async function getArchUsingFileCommand(filePath) {
   const FILE_ARCH = {
     x64: 'x64',
     'x86-64': 'x64',
-    'x86_64': 'x64',
+    x86_64: 'x64',
     x86: 'ia32',
+    i386: 'ia32',
     arm64: 'arm64',
     arm: 'arm',
     aarch64: 'arm64',
+    ARMv7: 'arm',
+    ppc_7400: 'ppc',
+    // PE32 executable (console) Intel 80386, for MS Windows
+    'Intel 80386': 'ia32',
+    // ELF 64-bit LSB executable, IA-64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-ia64.so.2, for GNU/Linux 2.6.16
+    'IA-64': 'x64',
+    // ELF 32-bit MSB executable, PowerPC or cisco 4500, version 1 (SYSV), dynamically linked, interpreter /lib/ld.so.1, for GNU/Linux 2.6.32
+    PowerPC: 'ppc',
+    // ELF 32-bit MSB executable, MIPS, MIPS-IV version 1 (SYSV), dynamically linked, interpreter /lib/ld.so.1, for GNU/Linux 2.4.1
+    MIPS: 'mips',
   };
 
-  const fileArchRegex = new RegExp(`/${Object.keys(FILE_ARCH).join('|')}/`);
+  const fileArchRegexStr = Object.keys(FILE_ARCH)
+    .map((arch) => `(?:${arch})`)
+    .join('|');
+  const fileArchRegex = new RegExp(fileArchRegexStr);
   const fileArchMatch = result.match(fileArchRegex);
-  debug(`archMatch: ${fileArchMatch?.[0]}`);
+  debug('archMatch:', fileArchMatch?.[0]);
   const fileArch = fileArchMatch ? fileArchMatch[0] : null;
   const arch = FILE_ARCH[fileArch];
 
