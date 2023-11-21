@@ -35,15 +35,22 @@ async function readPEArch(filePath) {
   const peOffset = buffer.readUInt32LE(DOS_HEADER_PE_OFFSET);
 
   // Read the machine type from the COFF header
-  const machineType = buffer.readUInt16LE(
-    peOffset + COFF_HEADER_MACHINE_OFFSET
-  );
+  let machineType;
+  try {
+    machineType = buffer.readUInt16LE(
+      peOffset + COFF_HEADER_MACHINE_OFFSET
+    );
+  } catch (error) {
+    debug('read error:', error.message);
+    throw new Error('Invalid PE file');
+  }
 
   // Mapping of machine types to architectures
   const MACHINE_TYPES = {
     0x014c: 'ia32',
     0x8664: 'x64',
     0x01c0: 'arm',
+    0x01c4: 'arm', // ARMv7 Thumb-2 LE
     0xaa64: 'arm64',
   };
 

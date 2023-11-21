@@ -28,7 +28,7 @@ async function test() {
       const arch = await readBinaryFileArch(filePath);
       console.log(`${arch}\t${file}`);
     } catch (error) {
-      console.error(error.message);
+      console.error(`${file}: ${error.message}`);
     }
   }
 }
