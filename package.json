@@ -27,7 +27,9 @@
   },
   "homepage": "https://github.com/samuelmaddock/read-binary-file-arch#readme",
   "dependencies": {
-    "debug": "^4.3.4",
+    "debug": "^4.3.4"
+  },
+  "devDependencies": {
     "degit": "^2.8.4"
   },
   "prettier": {
