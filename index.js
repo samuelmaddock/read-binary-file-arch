@@ -67,7 +67,8 @@ async function getArchUsingFileCommand(filePath) {
   // 'file' architectures => Node architectures
   const FILE_ARCH = {
     x64: 'x64',
-    'x86-64': 'ia32',
+    'x86-64': 'x64',
+    'x86_64': 'x64',
     x86: 'ia32',
     arm64: 'arm64',
     arm: 'arm',
