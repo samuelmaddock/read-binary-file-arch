@@ -98,7 +98,7 @@ async function getArchUsingFileCommand(filePath) {
     .join('|');
   const fileArchRegex = new RegExp(fileArchRegexStr);
   const fileArchMatch = result.match(fileArchRegex);
-  debug('archMatch:', fileArchMatch?.[0]);
+  debug('archMatch:', fileArchMatch && fileArchMatch[0]);
   const fileArch = fileArchMatch ? fileArchMatch[0] : null;
   const arch = FILE_ARCH[fileArch];
 
